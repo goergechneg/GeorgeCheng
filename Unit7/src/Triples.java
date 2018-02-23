@@ -54,11 +54,11 @@ number = num;
 		for(int i = 1; i <= number; i++)
 		{
 			a=i;
-				for(int z = 1; z <= number; z++)
+				for(int z = i; z <= number; z++)
 					{
 						b = z;
 					
-					for(int l = 1; l <= number; l++)
+					for(int l = z; l <= number; l++)
 						{
 							c=l;
 						
