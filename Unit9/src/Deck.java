@@ -13,7 +13,8 @@ public class Deck {
 	 */
 	
 	
-	private Card[] cards;
+	private List<Card> cards;
+	
 
 	/**
 	 * size is the number of not-yet-dealt cards.
@@ -33,19 +34,19 @@ public class Deck {
 	 */
 	public Deck(String[] ranks, String[] suits, int[] values) {
 	
-		cards = new Card[ranks.length*suits.length];
+		cards = new ArrayList<Card> (ranks.length*suits.length);
 		int k = 0;
 		for(int i = 0; i < ranks.length; i++)
 		{
 			for(int a = 0; a < suits.length; a++)
 			{
 		
-				cards[k] =new Card(ranks[i],suits[a],values[i]);
+				cards.add(new Card(ranks[i],suits[a],values[i]));
 				k++;
 				
 			}
 		}
-	size = cards.length;
+	size = cards.size();
 	
 	}
 
@@ -55,9 +56,9 @@ public class Deck {
 	 * @return true if this deck is empty, false otherwise.
 	 */
 	public boolean isEmpty() {
-		for(int i = 0; i< cards.length; i++)
+		for(int i = 0; i< cards.size(); i++)
 		{
-			if(cards[i].pointValue() != 0)
+			if(cards.get(i).pointValue() != 0)
 				return false;
 		}
 	return true;
@@ -69,7 +70,7 @@ public class Deck {
 	 */
 	public int size() {
 
-		size = cards.length;
+		size = cards.size();
 		return size;
 	}
 
@@ -79,6 +80,17 @@ public class Deck {
 	 */
 	public void shuffle() {
 
+		
+		for(int a = 0; a<size()-1; a++)
+		{
+		int num = (int)(size()*Math.random());
+		
+		Card test = (cards.get(a));
+		cards.set(a, cards.get(num));
+		cards.set(num, test);
+		}
+		
+		
 	}
 
 	/**
@@ -89,7 +101,7 @@ public class Deck {
 	public Card deal() {
 		
 			size--;
-			return cards[size];
+			return cards.get(size);
 			
 		
 	}
@@ -103,7 +115,7 @@ public class Deck {
 		String rtn = "size = " + size + "\n Undealt cards: \n";
 
 		for (int k = size - 1; k >= 0; k--) {
-			rtn = rtn + cards[k];
+			rtn = rtn + cards.get(k);
 			if (k != 0) {
 				rtn = rtn + ", ";
 			}
@@ -114,12 +126,12 @@ public class Deck {
 		}
 
 		rtn = rtn + "\nDealt cards: \n";
-		for (int k = cards.length - 1; k >= size; k--) {
-			rtn = rtn + cards[k];
+		for (int k = cards.size() - 1; k >= size; k--) {
+			rtn = rtn + cards.get(k);
 			if (k != size) {
 				rtn = rtn + ", ";
 			}
-			if ((k - cards.length) % 2 == 0) {
+			if ((k - cards.size()) % 2 == 0) {
 				// Insert carriage returns so entire deck is visible on console.
 				rtn = rtn + "\n";
 			}
