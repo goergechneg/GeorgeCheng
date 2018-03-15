@@ -18,22 +18,19 @@ public class GradeBookFileRunner
 		String fileName = System.getProperty("user.dir") + "\\src\\" + "gradebook.dat";
 		Scanner file = new Scanner(new File(fileName));
 
-		String className = file.nextLine();
-		String sizeString = file.nextLine();
-		Scanner string = new Scanner(sizeString);
-		int size = string.nextInt();
-		Class class1 = new Class(className);
-		while (file.hasNextLine()) {
-			String name = file.nextLine();
-			String grades = file.nextLine();
-			class1.addStudent(new Student(name, grades));
+		String Name = file.nextLine();
+		int classSize = Integer.parseInt(file.nextLine());
+		Class test = new Class(Name,classSize);
+		
+		int iter = 0;
+		while (file.hasNextLine())
+		{
+			String sName = file.nextLine();
+			String sGrades = file.nextLine();
+			test.addStudent(iter,new Student(sName,sGrades));
+			iter++;
 		}
-		System.out.println("");
-		out.println(class1);
-		System.out.println("Faliure list : " + class1.getFailureList(70));
-		System.out.println("Highest Average : " + class1.getStudentWithHighestAverage());
-		System.out.println("Lowest Average : " + class1.getStudentWithLowestAverage());
-		System.out.println("Class Average : " + class1.getClassAverage());
+		System.out.print(test);			
 
 	}		
 }

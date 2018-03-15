@@ -126,10 +126,18 @@ public class Class
 	public String toString()
 	{
 		String output=""+getClassName()+"\n";
+		
+		for(int i = 0; i< studentList.length; i++)
+		{
+			output = output + String.format(getStudentName(i) + "\'s average = %.2f",getStudentAverage(i)) + "\n";
+		}
 
-
-
-
+		output = output + "Failure List = " + getFailureList(70) + "\n"
+		+ "Highest Average = " + getStudentWithHighestAverage() + "\n"
+		+ "Lowest Average = " + getStudentWithLowestAverage() + "\n"
+		+ String.format("Class Average = %.2f",getClassAverage());
+		
+		
 		return output;
 	}  	
 }
