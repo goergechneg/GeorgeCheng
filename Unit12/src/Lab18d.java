@@ -5,10 +5,8 @@
 //Lab  -
 
 import java.io.File;
-
 import java.io.IOException;
 import java.util.Scanner;
-import java.util.ArrayList;
 import java.util.Arrays;
 import static java.lang.System.*;
 
@@ -19,34 +17,36 @@ public class Lab18d
 		Scanner file = new Scanner(new File("lab18d.dat"));
 
 		int size = file.nextInt();
-		ArrayList<String> words = new ArrayList<String>();
-			
-			while(file.hasNext())
+		file.nextLine();
+		
+		 Word Words[] = new Word[size];
+		 
+		 int i = 0;
+		 while(file.hasNext())
+		 {
+			 Word a = new Word(file.next());
+			 Words[i] = a;
+			 i++;
+			 
+		 }
+		for(int a = 0; a < size-1; a++)
+		{
+			int b = a;
+			for(int c = a+1; c< Words.length-1; c++)
 			{
-				words.add(file.next());
-			}
-		if(words.size() == 1)
-			System.out.println(words.toString());
-		else
-		{
-			
-			for(int i = 0; i < words.size() - 1; i++)
+				if(Words[b].compareTo(Words[c]) < 0)
 				{
-			Word test = new Word(words.get(i));
-			Word test2 = new Word(words.get(i+1));
-				if(test.compareTo(test2) != -1)
-					{
-						String s = test.toString();
-						words.set(i,words.get(i+1));
-						words.set(i+1,s);
-					}
+					b = c;
 				}
-	
 			}
-
-		for(String word : words)
-		{
-			System.out.println(word);
+			
+			Word temp = Words[a];
+			Words[a] = Words[b];
+			Words[b] = temp;
+			
+			System.out.println(Words[a].toString());	
 		}
+	
+
 	}
 }
