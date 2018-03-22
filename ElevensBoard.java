@@ -114,11 +114,19 @@ public class ElevensBoard extends Board {
 	 */
 	private boolean containsJQK(List<Integer> selectedCards) {
 	
-			if(selectedCards.contains(RANKS[12]) && selectedCards.contains(RANKS[10]) && selectedCards.contains(RANKS[11]))
-			
+		for(int i = 0; i <selectedCards.size(); i++)
+		{
+			for(int a = 0; a < selectedCards.size(); a++)
+			{
+				for(int b = 0; b < selectedCards.size(); b++)
 				{
-					return true;
+					if(cardAt(selectedCards.get(i)).rank().equals("jack") && cardAt(selectedCards.get(a)).rank().equals("queen") && cardAt(selectedCards.get(b)).rank().equals("king"))
+						return true;
 				}
+			}
+		}
+		
+			
 				return false;
 			}
 
