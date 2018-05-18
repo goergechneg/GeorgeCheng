@@ -1,4 +1,4 @@
-
+package classes;
 /**
  * This class contains class (static) methods
  * that will help you test the Picture class 
@@ -12,7 +12,7 @@ public class PictureTester
   /** Method to test zeroBlue */
   public static void testZeroBlue()
   {
-    Picture beach = new Picture("H:\\GeorgeCheng\\Unit16-Picture-Lab\\src\\images\\beach.jpg");
+    Picture beach = new Picture("H:\\GeorgeCheng\\Unit16-Picture-Lab\\src\\images\\dress.jpg");
     beach.explore();
     beach.zeroBlue();
     beach.explore();
@@ -129,10 +129,20 @@ public class PictureTester
     swan.explore();
   }
   
+  public static void testBlur(int x, int y, int w, int h, int n)
+  {
+	  Picture redMoto = new Picture("H:\\GeorgeCheng\\Unit16-Picture-Lab\\src\\images\\redMotorcycle.jpg");
+	  for(int i = 0; i < n; i++){
+		  redMoto.blur(x,y,w,h);
+	  }
+	  
+	  redMoto.explore();
+	    }
+  
   public static void testEncode()
   {
-	  Picture swan = new Picture("C:\\Users\\George\\eclipse-workspace\\Unit16\\bin\\images\\swan.jpg");
-	  Picture message = new Picture("C:\\Users\\George\\eclipse-workspace\\Unit16\\bin\\images\\apple.jpg");
+	  Picture swan = new Picture("H:\\GeorgeCheng\\Unit16-Picture-Lab\\src\\images\\swan.jpg");
+	  Picture message = new Picture("H:\\GeorgeCheng\\Unit16-Picture-Lab\\src\\images\\msg.jpg");
 	  swan.explore();
 	  swan.encode(message);
 	  swan.explore();
@@ -140,10 +150,13 @@ public class PictureTester
 	  
   }
   
+  
   /** Main method for testing.  Every class can have a main
     * method in Java */
   public static void main(String[] args)
   {
+	  
+	//testBlur(0,0,639,479,100);
     // uncomment a call here to run a test
     // and comment out the ones you don't want
     // to run
@@ -169,6 +182,6 @@ public class PictureTester
     //testSetRedToHalfValueInTopHalf();
     //testClearBlueOverValue(200);
     //testGetAverageForColumn(0);
-	 testEncode();
+	  testEncode();
   }
 }
